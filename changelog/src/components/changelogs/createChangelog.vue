@@ -3,31 +3,31 @@
     <v-container class="d-flex mainContainar" fluid>
     <v-col class="cols col-left" cols="12" sm="3" md="2">
     <v-containar class="checkBoxLists">
-     <label>Type</label>
-      <v-checkbox 
+      <div><strong>Type</strong></div><br>
+      <v-checkbox class="vChekBox"
       v-model="checkbox1"
       label="new"
       value="new"
       ></v-checkbox>
-      <v-checkbox class="checkBox"
+      <v-checkbox class="vChekBox"
       v-model="checkbox2"
       label="improved"
       value="improved"
       ></v-checkbox>
-      <v-checkbox class="checkBox"
+      <v-checkbox class="vChekBox"
       v-model="checkbox3"
       label="fixed"
       value="fixed"
       ></v-checkbox>
     </v-containar>
     <v-containar class="lblcolLeft">
-    <label >Lable</label>
+    <div><strong>Lable</strong></div>
     <v-btn 
     dark
     depressed 
     color="#f8f8fa"
     small to="/createLable">
-    <v-icon class="iconColLeft" color="black"  dark>
+    <v-icon class="iconColLeft" color="black" small  dark>
            mdi-wrench
     </v-icon>
     </v-btn>
@@ -56,7 +56,7 @@
       <div class="btnGroup">
       <v-btn class="btnPublish"
       depressed
-      color="primary"
+      color="primary" @click="getChangelogVal"
        >
        publish now
        </v-btn>
@@ -93,6 +93,12 @@ import 'v-markdown-editor/dist/v-markdown-editor.css';
           tabSize: 2,
           indentUnit: 2
       },
+      ChanglgVal:{
+        title :null,
+        description:null,
+        chckbxTitle:[]
+
+      },
       textEditor:'',
       EntryTitle:'',
     }),
@@ -100,6 +106,21 @@ import 'v-markdown-editor/dist/v-markdown-editor.css';
       getCheckbox(chbx){
         this['checkbox' + chbx]
       },
+      getChangelogVal() {
+        this.ChanglgVal.title=this.EntryTitle;
+        this.ChanglgVal.description=this.textEditor;
+        if(this.checkbox1 != null){
+         this.ChanglgVal.chckbxTitle.push(this.checkbox1);
+        }
+        if(this.checkbox2 != null){
+         this.ChanglgVal.chckbxTitle.push(this.checkbox2);
+        }
+        if(this.checkbox3 != null){
+         this.ChanglgVal.chckbxTitle.push(this.checkbox3);
+        }
+
+        console.log(changlgVal);
+      }
      }
   }
 </script>
@@ -183,6 +204,11 @@ background-color: #c17aff;
 color:white;
 border-radius:5px;
 
+}
+.vChekBox{
+ margin-top:0;
+ padding-top: 0;
+ 
 }
 .btnGroup{
 display:flex;
